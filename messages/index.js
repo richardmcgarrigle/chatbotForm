@@ -34,12 +34,7 @@ bot.dialog('/', [
     },
     function (session, results) {
         session.userData.attachment = results.response;
-        let lookupInformation = {
-            claimNumber:'12345678',
-            policyHolder: 'James Woods'
-            policyNumber: session.userData.policy,
-            referenceNumber: 'ref12345'
-        }
+
         builder.Prompts.choice(session, "Ok, I think i got everything to submit this for you.);
     },
     function (session, results) {
