@@ -42,10 +42,10 @@ bot.dialog('/', [
         session.userData.attachment = results.response;
 
         var lookupResponse = {
-            claimNumber:"fakeClaimNumber",
+            claimNumber:"REF10001",
             policyHolder: "John Wick",
-            policyNumber: "fakePolicyNumber",
-            referenceNumber: "fakeRef12345"
+            policyNumber: "POL123345",
+            referenceNumber: "REF12345"
         };
 
         session.send("Got it");
@@ -53,11 +53,11 @@ bot.dialog('/', [
             + " to your " + session.userData.type.entity + " claim."
             + JSON.stringify('session.userData',JSON.stringify(session.userData))
         )
-        //if(session.userData.type.entity == 'new'){
-        //    builder.Prompts.choice("Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
-        //}else{
-        //    builder.Prompts.choice("That is us done, an agent will be in contact shortly to talk about moving you claim forward. ", ['yes', 'no']);
-        //}
+        if(session.userData.type.entity == 'new'){
+            builder.Prompts.choice("Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
+        }else{
+            builder.Prompts.choice("That is us done, an agent will be in contact shortly to talk about moving you claim forward. ", ['yes', 'no']);
+        }
     }
     //,
     //function (session, results) {
