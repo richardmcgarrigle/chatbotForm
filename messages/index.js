@@ -53,11 +53,12 @@ bot.dialog('/', [
             + " to your " + session.userData.type.entity + " claim."
             + JSON.stringify('session.userData',JSON.stringify(session.userData))
         )
-        if(session.userData.type.entity == 'new'){
-            builder.Prompts.choice("Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
-        }else{
-            builder.Prompts.choice("That is us done, an agent will be in contact shortly to talk about moving you claim forward. ", ['yes', 'no']);
-        }
+        builder.Prompts.choice("test", ['1', '2'])
+        //if(session.userData.type.entity == 'new'){
+        //    builder.Prompts.choice("Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
+        //}else{
+        //    builder.Prompts.choice("That is us done, an agent will be in contact shortly to talk about moving you claim forward. ", ['yes', 'no']);
+        //}
     }
     //,
     //function (session, results) {
