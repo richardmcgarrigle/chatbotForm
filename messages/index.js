@@ -28,16 +28,15 @@ bot.dialog('/', [
         session.userData.type = results.response;
 
         if(results.response.entity == 'new'){
-            builder.Prompts.number(session, "Ok, a " + JSON.stringify(session.userData) + " claim, I'll need your policy number to start, please enter that below");
+            builder.Prompts.number(session, "Ok, a new claim, I'll need your policy number to start, please enter that below");
         }
         else{
-            builder.Prompts.number(session, "Ok, an " + JSON.stringify(session.userData) + '\n' + JSON.stringify(results.response) + "\n" +results.response.entity + " claim, I'll need your claim number to start, please enter that below");
+            builder.Prompts.number(session, "Ok, an existing claim, I'll need your claim number to start, please enter that below");
         }
-
     },
     function (session, results) {
         session.userData.policy = results.response;
-        builder.Prompts.attachment(session, "Got it " + results.response + ", looking that up now. While I'm doing that please send me the photo you would like attached to your policy for this cliam.");
+        builder.Prompts.attachment(session, "Got it " + JSON.stringify(results.response) + ", looking that up now. While I'm doing that please send me the photo you would like attached to your policy for this cliam.");
     },
     function (session, results) {
         session.userData.attachment = results.response;
