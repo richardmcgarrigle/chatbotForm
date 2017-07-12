@@ -51,15 +51,11 @@ bot.dialog('/', [
         session.send("Got it");
         session.send("I've added that photo as " + lookupResponse.referenceNumber
             + " to your " + session.userData.type.entity + " claim."
-            + JSON.stringify('session.userData',JSON.stringify(session.userData))
         )
 
-        builder.Prompts.choice(session, "test", ['1', '2'])
-        //if(session.userData.type.entity == 'new'){
-        //    builder.Prompts.choice("Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
-        //}else{
-        //    builder.Prompts.choice("That is us done, an agent will be in contact shortly to talk about moving you claim forward. ", ['yes', 'no']);
-        //}
+        if(session.userData.type.entity == 'new'){
+            builder.Prompts.choice(session, "Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
+        }
     },
     function(session, result){
         //done
@@ -67,7 +63,7 @@ bot.dialog('/', [
     //,
     //function (session, results) {
     //    session.userData.policy = results.response;
-    //    if(results.response.entitiy == 'yes'){
+    //    if(results.response.entity == 'yes'){
     //        session.send("Ok, i'll connect you now [omni channel]")
     //    }
     //    else{
