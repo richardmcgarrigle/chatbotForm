@@ -51,7 +51,7 @@ bot.dialog('/', [
         session.send("Got it");
         session.send("I've added that photo as " + lookupResponse.referenceNumber
             + " to your " + session.userData.type.entity + " claim."
-            + JSON.stringify('session.userData.type.entity',session.userData.type.entity)
+            + JSON.stringify('session.userData',session.userData)
         )
         if(session.userData.type.entity == 'new'){
             builder.Prompts.choice("Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
