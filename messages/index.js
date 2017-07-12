@@ -28,10 +28,10 @@ bot.dialog('/', [
         session.userData.type = results.response;
 
         if(results.response == 'new'){
-            builder.Prompts.number(session, "Ok, a " + session.userData.type.toString() + " claim, I'll need your policy number to start, please enter that below");
+            builder.Prompts.number(session, "Ok, a " + JSON.stringify(session.userData) + " claim, I'll need your policy number to start, please enter that below");
         }
         else{
-            builder.Prompts.number(session, "Ok, an " + session.userData.type.toString() + " claim, I'll need your claim number to start, please enter that below");
+            builder.Prompts.number(session, "Ok, an " + JSON.stringify(session.userData) + " claim, I'll need your claim number to start, please enter that below");
         }
 
     },
