@@ -49,10 +49,23 @@ bot.dialog('/', [
         };
 
         session.send("Got it");
-        session.send("I've added that photo as " + lookupResponse.referenceNumber +
-            " to your " + session.userData.type.entity +
-            " claim, number " + lookupResponse.claimNumber + ". This can all be access from either your claim number, or your policy number, " + lookupResponse.policyNumber);
-        session.send("That should be you done now, an agent should be in touch when they are ready to move your claim forward. you can always contact us via <channel> if you need any info on your claim.");
+        session.send("I've added that photo as " + lookupResponse.referenceNumber
+            + " to your " + session.userData.type.entity + " claim."
+        )
+        if(session.userData.type.entity == 'new'){
+            builder.Prompts.choice("Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
+        }else{
+            builder.Prompts.choice("That is us done, an agent will be in contact shortly to talk about moving you claim forward. ", ['yes', 'no']);
+        }
+    },
+    function (session, results) {
+        session.userData.policy = results.response;
+        if(results.response.entitiy == 'yes'){
+            session.send("Ok, i'll connect you now [omni channel]")
+        }
+        else{
+            session.send("That is us done, an agent will be in contact shortly to talk about moving you claim forward.");
+        }
     }
 ]);
 if (useEmulator) {
