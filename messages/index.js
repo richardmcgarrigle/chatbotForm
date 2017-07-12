@@ -42,7 +42,7 @@ bot.dialog('/', [
         session.userData.attachment = results.response;
 
         var lookupResponse = {
-            claimNumber:"REF10001",
+            claimNumber:"CLM10001",
             policyHolder: "John Wick",
             policyNumber: "POL123345",
             referenceNumber: "REF12345"
@@ -58,18 +58,16 @@ bot.dialog('/', [
         }
     },
     function(session, result){
+        session.userData.callback = results.response;
+
+        if(results.response.entity == 'yes'){
+            session.send("Ok, i'll get someone to call you on the number we have on file from your policy informaiton.")
+        }
+        else{
+            session.send("Ok, that's us done. An agent will be in contact shortly to talk about moving you claim forward.")
+        }
         //done
     }
-    //,
-    //function (session, results) {
-    //    session.userData.policy = results.response;
-    //    if(results.response.entity == 'yes'){
-    //        session.send("Ok, i'll connect you now [omni channel]")
-    //    }
-    //    else{
-    //        session.send("That is us done, an agent will be in contact shortly to talk about moving you claim forward.");
-    //    }
-    //}
 ]);
 if (useEmulator) {
     var restify = require('restify');
