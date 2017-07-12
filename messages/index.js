@@ -1,8 +1,8 @@
 /*-----------------------------------------------------------------------------
-This template demonstrates how to use Waterfalls to collect input from a user using a sequence of steps.
-For a complete walkthrough of creating this type of bot see the article at
-https://aka.ms/abs-node-waterfall
------------------------------------------------------------------------------*/
+ This template demonstrates how to use Waterfalls to collect input from a user using a sequence of steps.
+ For a complete walkthrough of creating this type of bot see the article at
+ https://aka.ms/abs-node-waterfall
+ -----------------------------------------------------------------------------*/
 "use strict";
 var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
@@ -26,32 +26,31 @@ bot.dialog('/', [
     },
     function (session, results) {
         session.userData.policy = results.response;
-        builder.Prompts.attachment(session, "Got it " + results.response + ", looking that up now. While I'm doing that please send me the photo you would like attached to your policy for this cliam."); 
+        builder.Prompts.attachment(session, "Got it " + results.response + ", looking that up now. While I'm doing that please send me the photo you would like attached to your policy for this cliam.");
     },
     function (session, results) {
         session.userData.policy = results.response;
-        builder.Prompts.attachment(session, "Got it " + results.response + ", looking that up now. While I'm doing that please send me the photo you would like attached to your policy for this cliam."); 
+        builder.Prompts.attachment(session, "Got it " + results.response + ", looking that up now. While I'm doing that please send me the photo you would like attached to your policy for this cliam.");
     },
     function (session, results) {
         session.userData.attachment = results.response;
 
-        builder.Prompts.choice(session, "Ok, I think i got everything to submit this for you.);
+        builder.Prompts.choice(session, "Ok, I think i got everything to submit this for you.");
     },
     function (session, results) {
         session.userData.language = results.response.entity;
-        session.send("Got it... " + session.userData.name + 
-                    " you've been programming for " + session.userData.coding + 
-                    " years and use " + session.userData.language + ".");
+        session.send("Got it... " + session.userData.name +
+            " you've been programming for " + session.userData.coding +
+            " years and use " + session.userData.language + ".");
     }
 ]);
-
 if (useEmulator) {
     var restify = require('restify');
     var server = restify.createServer();
     server.listen(3978, function() {
         console.log('test bot endpont at http://localhost:3978/api/messages');
     });
-    server.post('/api/messages', connector.listen());    
+    server.post('/api/messages', connector.listen());
 } else {
     module.exports = { default: connector.listen() }
 }
