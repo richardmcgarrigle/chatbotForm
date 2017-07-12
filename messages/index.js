@@ -22,12 +22,13 @@ bot.localePath(path.join(__dirname, './locale'));
 
 bot.dialog('/', [
     function (session) {
-        builder.Prompts.choice(session, "Hello... I am a claims bot, you can use me to send photos of evidence for your claim new claim. To get started I will need to know if you will be asking about a new or existing claim.", ['new', 'existing']);
+        let name = session.userData.name
+        builder.Prompts.choice(session, "Hello " + name + " - I am a claims bot, you can use me to send photos of evidence for your claim new claim. To get started I will need to know if you will be asking about a new or existing claim.", ['new', 'existing']);
     },
     function (session, results) {
-        session.userData.type = results.response;
+        session.userData.type = results.response.type[0].entity;
 
-        if(results.response == 'new'){
+        if(session.userData.type == 'new'){
             builder.Prompts.number(session, "Ok, a " + JSON.stringify(session.userData) + " claim, I'll need your policy number to start, please enter that below");
         }
         else{
