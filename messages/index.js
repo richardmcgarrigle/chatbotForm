@@ -53,7 +53,8 @@ bot.dialog('/', [
             + " to your " + session.userData.type.entity + " claim."
             + JSON.stringify('session.userData',JSON.stringify(session.userData))
         )
-        builder.Prompts.choice("test", ['1', '2'])
+
+        builder.Prompts.choice(session, "test", ['1', '2'])
         //if(session.userData.type.entity == 'new'){
         //    builder.Prompts.choice("Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
         //}else{
