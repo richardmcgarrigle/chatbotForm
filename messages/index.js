@@ -30,7 +30,7 @@ bot.dialog('/', [
         if(results.response == 'new'){
             builder.Prompts.number(session, "Ok, a " + session.userData.type + " claim, I'll need your policy number to start, please enter that below");
         }
-        else if(results.response == 'existing'){
+        else{
             builder.Prompts.number(session, "Ok, an " + session.userData.type + " claim, I'll need your claim number to start, please enter that below");
         }
 
