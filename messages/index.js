@@ -59,7 +59,7 @@ bot.dialog('/', [
                 "\n\nAs this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
         }
     },
-    function(session, result){
+    function(session, results){
         session.userData.callback = results.response;
 
         if(results.response.entity == 'yes'){
