@@ -22,7 +22,7 @@ bot.localePath(path.join(__dirname, './locale'));
 
 bot.dialog('/', [
     function (session) {
-        builder.Prompts.choice(session, "Hello... I am a claims bot, you can use me to send photos of evidence for your claim new claim. To get started I will need to know if you will be asking about a new or existing claim.", ['new', 'existing']);
+        builder.Prompts.choice(session, "Hello" + session.name + " - I am a claims bot, you can use me to send photos of evidence for your claim new claim. To get started I will need to know if you will be asking about a new or existing claim.", ['new', 'existing']);
     },
     function (session, results) {
         session.userData.type = results.response;
