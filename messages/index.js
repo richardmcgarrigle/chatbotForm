@@ -59,6 +59,9 @@ bot.dialog('/', [
         //}else{
         //    builder.Prompts.choice("That is us done, an agent will be in contact shortly to talk about moving you claim forward. ", ['yes', 'no']);
         //}
+    },
+    function(session, result){
+        //done
     }
     //,
     //function (session, results) {
