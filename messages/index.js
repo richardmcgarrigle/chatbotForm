@@ -22,7 +22,8 @@ bot.localePath(path.join(__dirname, './locale'));
 
 bot.dialog('/', [
     function (session) {
-        builder.Prompts.choice(session, "Hello " + session.userData.name + " - I am a claims bot, you can use me to send photos of evidence for your claim new claim. To get started I will need to know if you will be asking about a new or existing claim.", ['new', 'existing']);
+        builder.Prompts.choice(session, "Hello " + session.userData.name + " - I am a claims bot, you can use me to send photos of evidence for your claim new claim. " +
+            "\n\nTo get started I will need to know if you will be asking about a new or existing claim.", ['new', 'existing']);
     },
     function (session, results) {
         session.userData.type = results.response;
@@ -54,14 +55,15 @@ bot.dialog('/', [
         )
 
         if(session.userData.type.entity == 'new'){
-            builder.Prompts.choice(session, "Please take note of your new claim number, " + lookupResponse.claimNumber + ". As this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
+            builder.Prompts.choice(session, "Please take note of your new claim number, " + lookupResponse.claimNumber + ". " +
+                "\n\nAs this is a new claim, would you like me to connect you to an agent now to talk about your claim?", ['yes', 'no']);
         }
     },
     function(session, result){
         session.userData.callback = results.response;
 
         if(results.response.entity == 'yes'){
-            session.send("Ok, i'll get someone to call you on the number we have on file from your policy informaiton.")
+            session.send("Ok, i'll get someone to call you on the number we have on file from your policy information.")
         }
         else{
             session.send("Ok, that's us done. An agent will be in contact shortly to talk about moving you claim forward.")
