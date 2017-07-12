@@ -41,13 +41,18 @@ bot.dialog('/', [
     function (session, results) {
         session.userData.attachment = results.response;
 
-        builder.Prompts.choice(session, "Ok, I think i got everything to submit this for you.");
-    },
-    function (session, results) {
-        session.userData.language = results.response.entity;
-        session.send("Got it... " + session.userData.name +
-            " you've been programming for " + session.userData.coding +
-            " years and use " + session.userData.language + ".");
+        var lookupResponse = {
+            claimNumber:"fakeClaimNumber",
+            policyHolder: "John Wick",
+            policyNumber: "fakePolicyNumber",
+            referenceNumber: "fakeRef12345"
+        };
+
+        session.send("Got it");
+        session.send("I've added that photo as " + lookupResponse.referenceNumber +
+            " to your " + session.userData.type.entity +
+            " claim, number " + lookupResponse.claimNumber + ". This can all be access from either your claim number, or your policy number, " + lookupResponse.policyNumber);
+        session.send("That should be you done now, an agent should be in touch when they are ready to move your claim forward. you can always contact us via <channel> if you need any info on your claim.");
     }
 ]);
 if (useEmulator) {
