@@ -26,7 +26,7 @@ bot.dialog('/', [
     },
     function (session, results) {
         session.userData.type = results.response;
-        session.send('results.response', results.response[0])
+        session.send('results.response', session.userData.type[0])
         if(results.response == 'new'){
             builder.Prompts.number(session, "Ok, a " + session.userData.type + " claim, I'll need your policy number to start, please enter that below");
         }
