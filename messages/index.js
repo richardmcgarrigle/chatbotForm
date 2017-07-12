@@ -26,10 +26,10 @@ bot.dialog('/', [
     },
     function (session, results) {
         session.userData.type = results.response;
-        if(session.userData.type 'new'){
+        if(session.userData.type == 'new'){
             builder.Prompts.number(session, "Ok, a " + session.userData.type + " claim, I'll need your policy number to start, please enter that below");
         }
-        else if(session.userData.type 'existing'){
+        else if(session.userData.type == 'existing'){
             builder.Prompts.number(session, "Ok, an " + session.userData.type + " claim, I'll need your claim number to start, please enter that below");
         }
 
